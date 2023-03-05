@@ -57,13 +57,10 @@ class Solution{
             max = Math.max(max, arr[i]);
         }
         
-        // System.out.println(min+" "+max);
-        
         int mid;
         
         while(min <= max) {
             mid = (min+max)/2;
-            // System.out.println(mid);
             
             int count = countSmaller(arr, l, r, mid);
             if(count < k) {
