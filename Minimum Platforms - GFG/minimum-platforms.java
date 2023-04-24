@@ -47,29 +47,27 @@ class Solution
     //railway station such that no train waits.
     static int findPlatform(int arr[], int dep[], int n)
     {
-        // add your code here
-        Arrays.sort(arr);
-        Arrays.sort(dep);
-        
-        int trainsAtStation = 0;
-        int maxTrainsAtStation = 0;
-        
-        int i = 0, j = 0;
-        
-        while(i < n && j < n) {
-            if(arr[i] <= dep[j]) {
-                trainsAtStation++;
-                i++;
-                
-                maxTrainsAtStation = Math.max(maxTrainsAtStation, trainsAtStation);
-            }
-            else {
-                trainsAtStation--;
-                j++;
-            }
-        }
-        
-        return maxTrainsAtStation;
+        // Your code here
+    	Arrays.sort(arr);
+    	Arrays.sort(dep);
+    	
+    	int i = 0, j = 0;
+    	int trains = 0;
+    	int maxTrains = 0;
+    	
+    	while(i < n && j < n) {
+    	    if(arr[i] <= dep[j]) {
+    	        trains++;
+    	        i++;
+    	        maxTrains = Math.max(maxTrains, trains);
+    	    }
+    	    else {
+    	        trains--;
+    	        j++;
+    	    }
+    	}
+    	
+    	return maxTrains;
     }
     
 }
