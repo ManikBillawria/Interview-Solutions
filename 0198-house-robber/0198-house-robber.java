@@ -1,29 +1,26 @@
 class Solution {
 
-    private int robUtil(int[] nums, int i, int n, int amount, int[][] memo) {
+    private int robUtil(int[] nums, int i, int n, int[] memo) {
         if(i >= n) {
-            return amount;
+            return 0;
         }
 
-        if(memo[i][amount] != -1) {
-            return memo[i][amount];
+        if(memo[i] != -1) {
+            return memo[i];
         }
 
-        int rob = robUtil(nums, i+2, n, amount+nums[i], memo);
-        int notRob = robUtil(nums, i+1, n, amount, memo);
+        int rob = nums[i] + robUtil(nums, i+2, n, memo);
+        int notRob = robUtil(nums, i+1, n, memo);
 
-        return memo[i][amount] = Math.max(rob, notRob);
+        return memo[i] = Math.max(rob, notRob);
     }
 
     public int rob(int[] nums) {
         int n = nums.length;
-        int totalSum = Arrays.stream(nums).sum();
-
-        int[][] memo = new int[n][totalSum+1];
-        for(int[] row : memo) {
-            Arrays.fill(row, -1);
-        }
-
-        return robUtil(nums, 0, n, 0, memo);
+        
+        int[] memo = new int[n];
+        Arrays.fill(memo, -1);
+        
+        return robUtil(nums, 0, n, memo);
     }
 }
